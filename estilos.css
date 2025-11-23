@@ -122,6 +122,11 @@ footer {
     align-items: center;
     justify-content: space-between;
 }
+/* .skill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;      
+} */
 
 .skill img {
     width: 16px;
@@ -330,3 +335,9 @@ footer {
     background-color: blue;
     transform: translateY(-2px);
 }
+/* 
+.skill img {
+    width: 16px !important;
+    height: 16px !important;
+    object-fit: contain;
+} */
