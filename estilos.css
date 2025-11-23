@@ -273,6 +273,25 @@ footer {
     transform: translateY(-2px);
 }
 
+/* Botón para crear la tarjeta */
+.delete-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #5ef933;
+    color: #2e3a4f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #5ef933;
+    transform: translateY(-2px);
+}
+
 /* Botón para guardar tarjetas */
 .save-btn {
     margin-top: 15px;

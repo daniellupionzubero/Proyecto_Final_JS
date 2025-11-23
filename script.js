@@ -5,6 +5,21 @@ window.onload = () => {
     // Crear handlers para los botones de control
     let botonCrearTarjeta = document.querySelector('.create-btn');
     botonCrearTarjeta.addEventListener('click',crearNuevaTarjeta);
+
+    let botonGuardarTarjeta = document.querySelector('.save-btn');
+    botonGuardarTarjeta.addEventListener('click',guardarTarjetas);
+
+    let botonCargarTarjeta = document.querySelector('.load-btn');
+    botonCargarTarjeta.addEventListener('click',cargarTarjetas);
+
+    let botonOrdenarTarjetaAZ = document.querySelector('.sort-btn:nth-of-type(1)');
+    botonOrdenarTarjetaAZ.addEventListener('click',ordenarNombreAZ);
+
+    let botonOrdenarTarjetaZA = document.querySelector('.sort-btn:nth-of-type(2)');
+    botonOrdenarTarjetaZA.addEventListener('click',ordenarNombreZA);
+
+    let botonEliminarTotesTarjetes = document.querySelector('.delete-btn');
+    botonEliminarTotesTarjetes.addEventListener('click',eliminarTotesTarjetes);
 }
 
 function crearTarjetas(filosofos) {
@@ -82,7 +97,7 @@ function crearTarjetas(filosofos) {
             let icon = document.createElement('img');
             icon.src = 'https://via.placeholder.com/16';
             // icon.alt = `Icono de ${infoHabilidad.habilidad}`;
-            skill.append(icon);
+            // skill.append(icon);
             // 2.Etiqueta de habilidad
             let nombreSkill = document.createElement('span');
             nombreSkill.classList.add('skill-name');
@@ -98,16 +113,24 @@ function crearTarjetas(filosofos) {
             skill.append(barra);
 
             habilidades.append(skill);
-        
         }
+
+        let botonEliminar = document.createElement('button');
+        botonEliminar.classList.add('botonEliminar');
+        botonEliminar.innerHTML = "X";
+        botonEliminar.addEventListener('click', eliminarTarjeta);
+        tarjeta.append(botonEliminar);
 
         // Añadimos tarjeta creada al contenedor de tarjetas
         let contenedor = document.querySelector('.cards-container');
         contenedor.append(tarjeta);
     })
+
 }
 
-function eliminarTarjeta() {
+function eliminarTarjeta(event) {
+    const tarjeta = event.target.closest('.card');
+    tarjeta.remove();
 }
 
 function ordenarNombreAZ() {
@@ -118,12 +141,18 @@ function ordenarNombreAZ() {
         return nombre1.localeCompare(nombre2);
     });
 
-    // Eliminar totes les targetes de l'array 'tarjeta'
     // Completar codi
 
     // Afegir 'tarjetasOrdenadas' al contenidor de cards
     let contenedor = document.querySelector('.cards-container');
     // Completar codi
+}
+
+// Eliminar totes les targetes de l'array 'tarjeta'
+function eliminarTotesTarjetes() {
+    const tarjeta = document.querySelector('.cards-container');
+    tarjeta.remove();
+    tarjeta.innerHTML = "";
 }
 
 function ordenarNombreZA() {
