@@ -154,7 +154,7 @@ function ordenarNombreAZ() {
 // Completar codi
 function eliminarTotesTarjetes() {
     const tarjeta = document.querySelector('.cards-container');
-    tarjeta.remove();
+    // tarjeta.remove();
     tarjeta.innerHTML = "";
 }
 
@@ -213,11 +213,21 @@ function parsearTarjetas(tarjetas){
         filosofo.imagen = tarjeta.querySelector('.photo').src;
         filosofo.pais = {};
         // Completar funció
-        
+        filosofo.pais.nombre = tarjeta.querySelector('.pais').innerHTML;
+        filosofo.pais.bandera = tarjeta.querySelector('.info-pais img').src;
+        filosofo.corriente = tarjeta.querySelector('.corriente').innerHTML;
+        filosofo.arma = tarjeta.querySelector('.arma').innerHTML;
+        filosofo.habilidades = [];
         let habilidades = tarjeta.querySelectorAll('.skill');
         for (let habilidad of habilidades){
             let habilidadParaGuardar = {};
             // Completar funció
+            habilidadParaGuardar.habilidad = habilidad.querySelector('.skill-name').innerHTML;
+            let barra = habilidad.querySelector('.level');
+            let porcentaje = barra.style.width;
+            habilidadParaGuardar.nivel = porcentajeANivel(porcentaje);
+
+            filosofo.habilidades.push(habilidadParaGuardar);
         }
         filosofosParseados.push(filosofo);
     }
@@ -231,9 +241,24 @@ function guardarTarjetas(){
 
 
 function cargarTarjetas() {
+    let datos = localStorage.getItem('tarjetas');
+    if (!datos) {
+        alert("No hi ha targetes guardades.");
+        return;
+    }
+
+    let arrayFilosofos = JSON.parse(datos);
+
+    let contenedor = document.querySelector('.cards-container');
+    contenedor.innerHTML = "";
+
+    // Crear todas las tarjetas de nuevo
+    arrayFilosofos.forEach(filosofo => {
+        crearTarjetas([filosofo]);  
+    });
 }
 
-
+//Crear tarjetas
 function nivelAPorcentaje(nivel) {
     switch (nivel) {
         case 4: return '90%';
@@ -241,6 +266,17 @@ function nivelAPorcentaje(nivel) {
         case 2: return '50%';
         case 1: return '25%';
         default: return '0%';
+    }
+}
+
+//Parsear tarjetas
+function porcentajeANivel(porcentaje) {
+    switch (porcentaje) {
+        case '90%': return 4;
+        case '75%': return 3;
+        case '50%': return 2;
+        case '25%': return 1;
+        default: return 0;
     }
 }
 
