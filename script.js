@@ -141,14 +141,17 @@ function ordenarNombreAZ() {
         return nombre1.localeCompare(nombre2);
     });
 
-    // Completar codi
-
     // Afegir 'tarjetasOrdenadas' al contenidor de cards
     let contenedor = document.querySelector('.cards-container');
     // Completar codi
+    contenedor.innerHTML = "";
+    tarjetasOrdenadas.forEach(tarjeta => {
+        contenedor.appendChild(tarjeta);
+    });
 }
 
 // Eliminar totes les targetes de l'array 'tarjeta'
+// Completar codi
 function eliminarTotesTarjetes() {
     const tarjeta = document.querySelector('.cards-container');
     tarjeta.remove();
@@ -156,6 +159,20 @@ function eliminarTotesTarjetes() {
 }
 
 function ordenarNombreZA() {
+    let tarjetas = Array.from(document.querySelectorAll('.card'));
+
+    let tarjetasOrdenadas = tarjetas.sort((tarjetaA, tarjetaB) => {
+        let nombre1 = tarjetaA.querySelector('h3').innerHTML;
+        let nombre2 = tarjetaB.querySelector('h3').innerHTML;
+        return nombre2.localeCompare(nombre1); 
+    });
+
+    let contenedor = document.querySelector('.cards-container');
+
+    contenedor.innerHTML = "";
+    tarjetasOrdenadas.forEach(tarjeta => {
+        contenedor.appendChild(tarjeta);
+    });
 }
 
 function crearNuevaTarjeta(event) {
